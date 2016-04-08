@@ -5,10 +5,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 
 /**
@@ -44,9 +41,11 @@ public class Station implements Serializable {
     @Column(name = "ST_CODERW")
     private String stCodeRw = "";
 
-    //@JsonBackReference
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ST_RWID")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name="st_rwid")
+    @JsonBackReference
+    /*@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ST_RWID")*/
     private Railway railway;
 
 
@@ -93,7 +92,6 @@ public class Station implements Serializable {
         this.stCodeRw = stCodeRw;
     }
 
-    @JsonBackReference
     public Railway getRailway() {
         return railway;
     }

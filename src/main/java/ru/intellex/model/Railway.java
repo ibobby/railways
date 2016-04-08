@@ -6,10 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @Table(name = "RAILWAY")
@@ -34,9 +31,10 @@ public class Railway implements Serializable {
     @Column(name = "RW_SHORTNAME")
     private String rwShortname;
 
-    //@JsonIgnore
-    //@JsonManagedReference
-    @OneToMany(mappedBy = "railway")
+
+    //@OneToMany(mappedBy = "railway")
+    @OneToMany(mappedBy = "railway", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Station> stations;
 
 
@@ -68,7 +66,6 @@ public class Railway implements Serializable {
         this.rwShortname = rwShortname;
     }
 
-    @JsonManagedReference
     public Set<Station> getStations() {
         return this.stations;
     }
