@@ -18,7 +18,7 @@ public class RailwayController {
     @Autowired
     private RailwayService service;
 
-    @RequestMapping(value = "/railway", method = RequestMethod.GET)
+    @RequestMapping(value = "/railway_list", method = RequestMethod.GET)
     public String projectList(Model model) {
         model.addAttribute("railwayList", service.getAll());
         return "railwayList";

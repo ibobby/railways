@@ -18,7 +18,7 @@ import java.util.List;
  * Created by b.istomin on 05.04.2016.
  */
 @RestController
-@RequestMapping("/rest/station/all")
+@RequestMapping("/rest/station")
 public class StationRestController {
 
     private static Logger LOG = LoggerFactory.getLogger(StationRestController.class);
@@ -31,7 +31,7 @@ public class StationRestController {
         return  service.getAll();
     }
 
-    @RequestMapping(value = "/withRailways", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/with_railways", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Station> getAllWithRailways() {
         return  service.getAllWithRailways();
     }
